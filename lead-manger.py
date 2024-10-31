@@ -15,10 +15,11 @@ def connect_to_mysql():
         'password': 'OcT28!2024bumFox', 
         'database': 'freedomforever'    
     }
-            
-    # Establish the connection
-    mysql_connection = mysql.connector.connect(**config)
-    print("MySQL connection established successfully!")
+
+    try:
+        # Establish the connection
+        mysql_connection = mysql.connector.connect(**config)
+        print("MySQL connection established successfully!")
         
     except mysql.connector.Error as err:
         if err.errno == errorcode.ER_ACCESS_DENIED_ERROR:
