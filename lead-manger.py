@@ -34,21 +34,39 @@ def home():
     return render_template('index.html')
 
 # Define a route to test the connection
-@app.route('/connect')
-def connect_db():
+@app.route('/searches')
+def search_leads():
 
     error_status = '200'
     error_message = 'success'
     iRows = 10
+
+    search_query = request.args.get('search', '')
 
     connect_to_mysql();
     dbh = mysql_connection.cursor(dictionary=True)
 
     try:
         aLeads = []
+        search_term = f"%{search_query}%"
 
-        Sql = "SELECT * FROM leads LIMIT %s"
-        dbh.execute(Sql, (iRows,))
+        count_sql = """
+            SELECT COUNT(*) AS total_count FROM leads
+            WHERE name LIKE %s OR email LIKE %s OR phone LIKE %s
+        """
+        dbh.execute(count_sql, (search_term, search_term, search_term))
+        total_records = dbh.fetchone()['total_count']
+
+        # Sql = "SELECT * FROM leads LIMIT %s"
+        # dbh.execute(Sql, (iRows,))
+
+        # Use SQL LIKE for partial matching across multiple fields
+        sql = """
+            SELECT * FROM leads
+            WHERE (name LIKE %s OR email LIKE %s OR phone LIKE %s)
+            LIMIT %s
+        """
+        dbh.execute(sql, (search_term, search_term, search_term, iRows))
         rowleads = dbh.fetchall()
 
         for rowl in rowleads:
@@ -66,7 +84,7 @@ def connect_db():
         return jsonify({
             'status': error_status,
             'message': error_message,
-            'totalrecords': '0',
+            'totalrecords': total_records,
             'page': '1',
             'totalpages': '1',
             'leads_list': aLeads
