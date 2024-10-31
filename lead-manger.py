@@ -52,7 +52,7 @@ def connect_db():
         rowleads = dbh.fetchall()
 
         for rowl in rowleads:
-            aList.append({
+            aLeads.append({
                'id': rowl['id'],
                'name': rowl['name'],
                'email': rowl['email'],
@@ -69,7 +69,7 @@ def connect_db():
             'totalrecords': '0',
             'page': '1',
             'totalpages': '1',
-            'leads_list': aList
+            'leads_list': aLeads
         }), 200
 
     except mysql.connector.Error as err:
