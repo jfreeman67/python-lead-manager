@@ -1,5 +1,6 @@
 import mysql.connector
-from flask import Flask, render_template, jsonify
+from mysql.connector import errorcode
+from flask import Flask, render_template, jsonify, request
 
 app = Flask(__name__)
 
@@ -41,7 +42,13 @@ def search_leads():
     error_message = 'success'
     iRows = 10
 
-    search_query = request.args.get('search', '')
+    search_query = request.args.get('search', '').strip()
+    if not search_query:
+        return jsonify({
+            'status': '400',
+            'message': 'Please provide a search query.'
+        }), 400
+
 
     connect_to_mysql();
     dbh = mysql_connection.cursor(dictionary=True)
