@@ -77,8 +77,8 @@ def connect_db():
 
     finally:
         dbh.close()  # Close the cursor
-        if mysql_connection:  # Ensure connection exists before closing
-            mysql_connection.close()  # Close the connection if it's not used elsewhere
+        # if mysql_connection:  # Ensure connection exists before closing
+        #     mysql_connection.close()  # Close the connection if it's not used elsewhere
 
 if __name__ == '__main__':
     app.run(debug=True)
