@@ -3,10 +3,110 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>My Flask App</title>
+    <title>Lead Manager</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/lead-manager.css') }}">
 </head>
-<body>
-    <h1>Welcome to My Flask App!</h1>
-    <p>This is a simple Flask web app.</p>
+<body >
+    <div class="container">
+        <h1>Lead Manager</h1>
+
+        <!-- Search Bar -->
+        <div class="search-bar">
+            <input type="text" id="search-input" placeholder="Search for a lead by name, email, or phone" oninput="debouncedSearchRecords()">
+            <select id="status-filter" onchange="debouncedSearchRecords()">
+                <option value="">All Statuses</option>
+                <!-- Add more options based on your lead_statuses -->
+            </select>
+            <button id="create-lead-button" onclick="openCreateLeadModal()">Create New Lead</button>
+        </div>
+
+        <!-- Total Records and Pagination Info -->
+        <div class="pagination">
+            <div class="pagination-info">
+                <span id="total-records">Search Results: 1</span> | 
+                <span id="current-page">Page 1</span>
+            </div>
+            <div class="pagination-buttons">
+                <button onclick="prevPage()">Previous</button>
+                <button onclick="nextPage()">Next</button>
+            </div>
+        </div>
+
+        <table id="records">
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Email</th>
+                    <th style="min-width: 150px;">Phone</th>
+                    <th>Status</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                <!-- Additional records will go here -->
+            </tbody>
+        </table>
+
+        <!-- Edit Modal -->
+        <div id="edit-modal" class="modal">
+            <div class="modal-content">
+                <span class="close" onclick="closeEditModal()">&times;</span>
+                <h2>Edit Record</h2>
+                <p id="last-updated"></p>
+                <form id="edit-form" onsubmit="saveChanges(event)">
+                    <label for="edit-name">Name:</label>
+                    <input type="text" id="edit-name" required>
+
+                    <label for="edit-email">Email:</label>
+                    <input type="email" id="edit-email" required>
+
+                    <label for="edit-phone">Phone:</label>
+                    <input type="tel" id="edit-phone" required>
+
+                    <label for="edit-status">Status:</label>
+                    <select id="edit-status" required>
+                        <!-- Options will be populated dynamically -->
+                    </select>
+
+                    <div class="modal-buttons">
+                        <button type="submit">Save</button>
+                        <button type="button" onclick="closeEditModal()">Cancel</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+        <!-- Create New Lead Modal -->
+        <div id="create-modal" class="modal">
+            <div class="modal-content">
+                <span class="close" onclick="closeCreateModal()">&times;</span>
+                <h2>Create New Lead</h2>
+                <form id="create-form" onsubmit="createLead(event)">
+                    <label for="new-name">Name:</label>
+                    <input type="text" id="new-name" required>
+
+                    <label for="new-email">Email:</label>
+                    <input type="email" id="new-email" required>
+
+                    <label for="new-phone">Phone:</label>
+                    <input type="tel" id="new-phone" required>
+
+                    <label for="new-status">Status:</label>
+                    <select id="new-status" required>
+                        <!-- Options will be populated dynamically -->
+                    </select>
+
+                    <div class="modal-buttons">
+                        <button type="submit">Create</button>
+                        <button type="button" onclick="closeCreateModal()">Cancel</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+    </div>
+
+    <script src="{{ url_for('static', filename='javascript/lead-manager.js') }}"></script>
 </body>
 </html>
+

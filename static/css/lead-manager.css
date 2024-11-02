@@ -1,0 +1,237 @@
+/* General Body and Container Styling */
+body { 
+    font-family: Arial, sans-serif; 
+}
+
+.container { 
+    max-width: 900px; 
+    margin: 20px auto; 
+    padding: 20px; 
+    border: 1px solid #ddd; 
+}
+
+h1 { 
+    text-align: center; 
+}
+
+/* Search Bar Styles */
+/* .search-bar { 
+    margin-bottom: 20px; 
+    display: flex;
+    gap: 10px;
+    align-items: center; 
+}
+
+.search-bar input[type="text"], 
+.search-bar select { 
+    padding: 8px; 
+    font-size: 16px; 
+    border: 1px solid #ccc; 
+    border-radius: 4px;
+    width: 350px;
+}
+
+.search-bar select {
+    width: 150px;
+}
+
+#create-lead-button {
+    padding: 8px 12px;        
+    background-color: #353535;
+    color: white;             
+    border: none;             
+    border-radius: 4px;       
+    cursor: pointer;          
+}
+
+#create-lead-button:hover {
+    background-color: #454545;  
+}
+*/
+
+/* ------------------------------ */
+.search-bar {
+    display: flex;      
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 20px;
+    align-items: flex-start;
+}
+
+.search-bar input,
+.search-bar select {
+    margin-right: 10px;          /* Space between input and select */
+}
+
+#search-input {
+    flex: 0 1 auto;              /* Prevent the input from growing too large */
+    min-width: 350px;            /* Minimum width for the search input */
+}
+
+#status-filter {
+    width: 150px;
+    margin-left: 10px;
+}
+
+#create-lead-button {
+    width: 200px;
+    margin-left: 10px;          
+    padding: 12px 12px;          
+    background-color: #666666; 
+    color: white;              
+    border: none;               
+    border-radius: 4px;         
+    cursor: pointer;            
+}
+
+#create-lead-button:hover {
+    background-color: #555555;   /* Darker shade on hover */
+}
+/* ------------------------------ */
+
+/* Table Styles */
+table {
+    width: 100%; /* Full width of the container */
+    border-collapse: collapse; /* Merge table borders */
+}
+
+th, td {
+    padding: 10px; /* Add padding to table cells */
+    border: 1px solid #ccc; /* Add borders to cells */
+    text-align: left; /* Align text to the left */
+}
+
+thead {
+    background-color: #f4f4f4; /* Light gray background for the header */
+    font-weight: bold; /* Make header text bold */
+}
+
+/* Link Button Styles */
+.link-button {
+    display: inline-block;
+    padding: 8px 6px;
+    margin: 0 4px;
+    color: gray;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.link-button:hover {
+    color: black; /* Darker shade on hover */
+    background-color: #f4f4f4; /* Light gray background on hover */
+}
+
+/* Actions Column */
+.actions {
+    white-space: nowrap;
+}
+
+/* Form for adding/updating records */
+form { 
+    display: flex; 
+    flex-direction: column; 
+    gap: 10px; 
+    margin-top: 20px; 
+}
+
+form input[type="text"], 
+form input[type="email"], 
+form input[type="tel"], 
+form input[type="submit"] { 
+    padding: 8px; 
+    font-size: 16px; 
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+/* Pagination */
+.pagination { 
+    display: flex; 
+    justify-content: space-between; 
+    align-items: center; 
+    margin: 20px 0 3px 0;
+}
+
+.pagination-info { 
+    font-size: 14px; 
+}
+
+.pagination-buttons button { 
+    padding: 8px 12px; 
+    font-size: 16px;
+    width: 90px;
+    background-color: #f4f4f4;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.pagination-buttons button:hover { 
+    background-color: #e0e0e0; /* Slightly darker gray on hover */
+}
+
+
+/* Modal Styles */
+.modal {
+    display: none; /* Hidden by default */
+    position: fixed; /* Stay in place */
+    z-index: 1; /* Sit on top */
+    left: 0;
+    top: 0;
+    width: 100%; /* Full width */
+    height: 100%; /* Full height */
+    overflow: auto; /* Enable scroll if needed */
+    background-color: rgb(0,0,0); /* Fallback color */
+    background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+}
+
+.modal-content {
+    background-color: #fefefe;
+    margin: 15% auto; /* 15% from the top and centered */
+    padding: 20px;
+    border: 1px solid #888;
+    width: 400px; /* Width of the modal */
+    text-align: left; /* Align text to the left */
+}
+
+.close {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+label {
+    display: block;
+    margin: 10px 0 5px;
+}
+
+input, select {
+    width: calc(100% - 20px);
+    padding: 10px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+.modal-buttons {
+    text-align: right;
+}
+
+button {
+    padding: 10px 15px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #f0f0f0;
+}
